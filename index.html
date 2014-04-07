@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Trolo1ko</title>
+	</head>
+	<body>
+		<script src="Trolo1ko.js"></script>
+		<script>
+			/* Notes :
+			 * - Note name on a 88 keys piano keyboard (A4, B3#...)
+			 * - Rythm :
+			 *		. Whole note		0
+			 *		. Half note			1
+			 *		. Quarter note		2
+			 *		. Eigth note		3
+			 *		. Sixteenth note	4
+			 *		. Dotted half note	1.5
+			 *			...
+			 */ 	
+			var sheet = [
+				['E3', 4], ['G3', 4], ['A3', 4], ['B3', 4],
+				['C4', 0.5], ['G3', 3], ['F3', 3], ['G3', 0.5],
+				['C3', 3], ['D3', 3], ['E3', 1], ['G3', 1],
+				['D3', 2], ['C3', 1], ['E3', 4], ['G3', 4],
+				['A3', 4], ['C4', 4], ['B3', 3], ['B3', 4],
+				['G3', 4], ['A3', 3], ['A3', 4], ['E3', 4],
+				['G3', 2], ['C3', 4], ['D3', 4], ['E3', 4],
+				['F3', 4], ['E3', 0.5]
+			];
+			
+			/*
+			 * Player :
+			 *  - Constructor(sheet)
+			 *		. sheet : The sheet music to read
+			 *  - play(tempo, type)
+			 *		. tempo : Playing speed
+			 *		. type : Type of wave (sine, square, sawtooth...)
+			 */
+			var trololo = new Trolo1ko(sheet);
+			
+			//Umm... enjoy !
+		</script>
+		<button
+			id="play"
+			onclick="trololo.play(104);">
+			Play
+		</button>
+	</body>
+</html>
