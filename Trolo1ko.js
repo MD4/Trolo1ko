@@ -10,7 +10,6 @@ window.Trolo1ko = function (p) {
 	this.asc.push('C8');
 	this.p = p;
 	this.a = new (window.AudioContext || window.webkitAudioContext)();
-	console.log(this.a.createGainNode, this.a.createGain);
 	this.gn = this.a.createGain();
 	this.gn.connect(this.a.destination);
 	this.gn.gain.value = 0.5;
