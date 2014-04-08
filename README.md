@@ -3,4 +3,4 @@ Trolo1ko
 
 Minimalist sheet music player !
 
-Current size : 799 bytes !
+Current size : 746 bytes !
