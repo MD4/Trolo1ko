@@ -3,32 +3,32 @@
  * @author Martin DEQUATREMARE
  * @link https://github.com/MD4
  */
-window.Trolo1ko = function (p) {
-	this.asc = ['A0', 'A0#', 'B0'];
-	for (var i = 1; i <= 7; i++ )
-		this.asc = this.asc.concat(['C'+i, 'C'+i+'#', 'D'+i, 'D'+i+'#', 'E'+i, 'F'+i, 'F'+i+'#', 'G'+i, 'G'+i+'#', 'A'+i, 'A'+i+'#', 'B'+i]);
-	this.asc.push('C8');
-	this.p = p;
-	this.a = new (window.AudioContext || window.webkitAudioContext)();
-	this.gn = this.a.createGain();
-	this.gn.connect(this.a.destination);
-	this.gn.gain.value = 0.5;
+var z = window.Trolo1ko = function (p) {
+	var s = this;
+	s.x = ['A0', 'A0#', 'B0'];
+	for (var i = 1; i <= 7; i++)
+		s.x = s.x.concat("Cx Cx# Dx Dx# Ex Fx Fx# Gx Gx# Ax Ax# Bx".replace(/x/g, i).split(' '));
+	s.x.push('C8');
+	s.p = p;
+	s.a = new (window.AudioContext || window.webkitAudioContext)();
+	s.g = s.a.createGain();
+	s.g.connect(s.a.destination);
+	s.g.gain.value = 0.5;
 };
-window.Trolo1ko.prototype.play = function (t, v, i) {
+z.prototype.play = function (t, v, i) {
+	var s = this,
+		w = Math.pow;
 	i = i || 0;
-	if (i < this.p.length) {
-		if (i > 0)
-			this.o.stop(0);
-		this.o = this.a.createOscillator();
-		this.o.type = v || 2;
-		this.o.connect(this.gn);
-		this.o.frequency.value = Math.pow(2, ((this.asc.indexOf(this.p[i][0]) - 48) / 12)) * 440;
-		this.o.start(0);
-		var s = this;
-		setTimeout(function () {
-			s.play(t, v, ++i);
-		}, (60 / (+t * Math.pow(2, this.p[i][1] - 2))) * 1000);
-	} else {
-		this.o.stop(0);
-	}
+	if (i >= s.p.length)
+		return s.o.stop(0);
+	if (i > 0)
+		s.o.stop(0);
+	s.o = s.a.createOscillator();
+	s.o.type = v || 2;
+	s.o.connect(s.g);
+	s.o.frequency.value = w(2, ((s.x.indexOf(s.p[i][0]) - 48) / 12)) * 440;
+	s.o.start(0);
+	setTimeout(function () {
+		s.play(t, v, ++i);
+	}, (60 / (+t * w(2, s.p[i][1] - 2))) * 1000);
 };
